@@ -9,9 +9,10 @@ import { LiveTracking } from './pages/LiveTracking';
 import { Trains } from './pages/Trains';
 import { useAuth } from './context/AuthContext';
 import { Loader2 } from 'lucide-react';
+import React from 'react';
 
 // Protected Route Component
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   const { user, loading } = useAuth();
   if (loading) return <div className="p-8">Loading...</div>;
   if (!user) return <Navigate to="/login" replace />;
