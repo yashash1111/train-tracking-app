@@ -18,8 +18,8 @@ const app = express();
 const httpServer = createServer(app);
 const io = initSocket(httpServer);
 
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/time_tracker';
+const PORT = process.env.PORT || 5001;
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://yashashyashash1_db_user:yashash87920@traintrack1111.hi2fxur.mongodb.net/train_tracker?retryWrites=true&w=majority&appName=traintrack1111';
 
 // Middleware
 app.use(helmet());
