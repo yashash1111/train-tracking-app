@@ -33,7 +33,7 @@ app.use('/api', trainsRouter);
 
 // Basic Route
 app.get('/', (req, res) => {
-    res.send('Time Tracker API is running');
+    res.send('Rail Network API is running');
 });
 
 // Database and Server Start
