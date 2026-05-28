@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const isLocalNetwork = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !window.location.hostname.includes('vercel.app');
-const API_URL = import.meta.env.VITE_API_URL || (isLocalNetwork ? `http://${window.location.hostname}:5001/api` : 'http://localhost:5001/api');
+const isVercel = window.location.hostname.includes('vercel.app');
+const API_URL = import.meta.env.VITE_API_URL || (isVercel ? 'https://train-tracking-app-111-111.onrender.com/api' : (isLocalNetwork ? `http://${window.location.hostname}:5001/api` : 'http://localhost:5001/api'));
 
 const api = axios.create({
     baseURL: API_URL,

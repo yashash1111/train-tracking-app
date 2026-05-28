@@ -91,7 +91,8 @@ interface FoodOrder {
 }
 
 const isLocalNetwork = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1' && !window.location.hostname.includes('vercel.app');
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || (isLocalNetwork ? `http://${window.location.hostname}:5001` : 'http://localhost:5001');
+const isVercel = window.location.hostname.includes('vercel.app');
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || (isVercel ? 'https://train-tracking-app-111-111.onrender.com' : (isLocalNetwork ? `http://${window.location.hostname}:5001` : 'http://localhost:5001'));
 
 export const LiveTracking = () => {
     const [trains, setTrains] = useState<Train[]>([]);
