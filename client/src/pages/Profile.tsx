@@ -150,7 +150,7 @@ export const Profile = () => {
                                 ) : user?.profilePhotoUrl ? (
                                     <img src={user.profilePhotoUrl} alt="Profile" className="h-full w-full object-cover" />
                                 ) : (
-                                    <UserIcon className="h-12 w-12 text-slate-600 dark:text-slate-600" />
+                                    <UserIcon className="h-12 w-12 text-slate-400 dark:text-slate-500" />
                                 )}
                             </div>
                             
@@ -167,7 +167,6 @@ export const Profile = () => {
                                 onClick={() => fileInputRef.current?.click()}
                                 disabled={uploading}
                                 className="absolute bottom-0 right-0 h-10 w-10 rounded-full bg-yellow-500 dark:bg-yellow-500 text-slate-950 flex items-center justify-center hover:bg-yellow-400 hover:scale-110 transition-all shadow-lg border-2 border-slate-950"
-                                title="Upload Photo"
                             >
                                 <Camera className="h-4 w-4" />
                             </button>
@@ -258,10 +257,10 @@ export const Profile = () => {
                                             type="text"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
-                                            className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-yellow-600 dark:text-yellow-400 font-mono placeholder:text-slate-600 dark:text-slate-600 focus:ring-yellow-500/30 focus:border-yellow-500 h-12"
+                                            className="bg-white dark:bg-slate-950 border-slate-300 dark:border-slate-700 text-yellow-600 dark:text-yellow-400 font-mono placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-yellow-500/30 focus:border-yellow-500 h-12"
                                         />
                                     ) : (
-                                        <div className="h-12 flex items-center px-3 font-mono text-yellow-600 dark:text-yellow-400 bg-white dark:bg-slate-950/50 rounded-lg border border-slate-200 dark:border-slate-800/50">
+                                        <div className="h-12 flex items-center px-3 font-mono text-yellow-600 dark:text-yellow-400 bg-slate-100 dark:bg-slate-800/50 rounded-lg border border-slate-300 dark:border-slate-700">
                                             {name || '-'}
                                         </div>
                                     )}
@@ -276,10 +275,10 @@ export const Profile = () => {
                                             value={phone}
                                             onChange={(e) => setPhone(e.target.value)}
                                             placeholder="+91 "
-                                            className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-yellow-600 dark:text-yellow-400 font-mono placeholder:text-slate-600 dark:text-slate-600 focus:ring-yellow-500/30 focus:border-yellow-500 h-12"
+                                            className="bg-white dark:bg-slate-950 border-slate-300 dark:border-slate-700 text-yellow-600 dark:text-yellow-400 font-mono placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-yellow-500/30 focus:border-yellow-500 h-12"
                                         />
                                     ) : (
-                                        <div className="h-12 flex items-center px-3 font-mono text-yellow-600 dark:text-yellow-400 bg-white dark:bg-slate-950/50 rounded-lg border border-slate-200 dark:border-slate-800/50">
+                                        <div className="h-12 flex items-center px-3 font-mono text-yellow-600 dark:text-yellow-400 bg-slate-100 dark:bg-slate-800/50 rounded-lg border border-slate-300 dark:border-slate-700">
                                             {phone || '-'}
                                         </div>
                                     )}
@@ -287,18 +286,17 @@ export const Profile = () => {
                                 
                                 <div className="space-y-2 md:col-span-2">
                                     <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 font-mono flex items-center gap-1.5">
-                                        <FileText className="h-3 w-3 text-yellow-600 dark:text-yellow-500" /> Dispatcher Bio
+                                        <FileText className="h-3 w-3 text-slate-500 dark:text-slate-400" /> Dispatcher Bio
                                     </label>
                                     {isEditing ? (
                                         <textarea
                                             value={bio}
                                             onChange={(e) => setBio(e.target.value)}
-                                            rows={3}
                                             placeholder="Enter your experience, active regions, and spotting preferences..."
-                                            className="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-yellow-600 dark:text-yellow-400 font-mono placeholder:text-slate-600 dark:text-slate-600 focus:ring-yellow-500/30 focus:border-yellow-500 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 resize-none"
+                                            className="bg-white dark:bg-slate-950 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 font-mono placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-yellow-500/30 focus:border-yellow-500 min-h-[100px] resize-none"
                                         />
                                     ) : (
-                                        <div className="min-h-[3rem] p-3 font-mono text-yellow-600 dark:text-yellow-400 bg-white dark:bg-slate-950/50 rounded-lg border border-slate-200 dark:border-slate-800/50 whitespace-pre-wrap text-sm">
+                                        <div className={`p-4 rounded-lg border border-slate-300 dark:border-slate-700 font-mono min-h-[100px] bg-slate-100 dark:bg-slate-800/50 ${!bio ? 'text-slate-400 dark:text-slate-500 italic' : 'text-slate-700 dark:text-slate-300'}`}>
                                             {bio || 'No bio provided.'}
                                         </div>
                                     )}
