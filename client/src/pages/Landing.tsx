@@ -300,8 +300,8 @@ export const Landing = () => {
 
     // Frame styling tokens
     const borderColors = {
-        gold: 'border-yellow-500 shadow-yellow-500/20 ring-yellow-500/30 text-yellow-400',
-        emerald: 'border-emerald-500 shadow-emerald-500/20 ring-emerald-500/30 text-emerald-400',
+        gold: 'border-yellow-500 shadow-yellow-500/20 ring-yellow-500/30 text-yellow-600 dark:text-yellow-400',
+        emerald: 'border-emerald-500 shadow-emerald-500/20 ring-emerald-500/30 text-emerald-600 dark:text-emerald-400',
         indigo: 'border-indigo-500 shadow-indigo-500/20 ring-indigo-500/30 text-indigo-400'
     };
 
@@ -324,7 +324,7 @@ export const Landing = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100 pb-20 relative overflow-x-hidden font-sans">
+        <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 pb-20 relative overflow-x-hidden font-sans">
             
             {/* Global Level-Up Alert Banner */}
             {levelUpMessage && (
@@ -335,15 +335,15 @@ export const Landing = () => {
             )}
 
             {/* Glowing background highlights */}
-            <div className="absolute top-0 left-1/4 h-[400px] w-[400px] rounded-full bg-yellow-500/5 blur-[120px] pointer-events-none" />
+            <div className="absolute top-0 left-1/4 h-[400px] w-[400px] rounded-full bg-yellow-500 dark:bg-yellow-500/5 blur-[120px] pointer-events-none" />
             <div className="absolute top-1/2 right-1/4 h-[500px] w-[500px] rounded-full bg-emerald-500/5 blur-[150px] pointer-events-none" />
 
             {/* Redesigned Premium Hero Header */}
-            <section className="relative w-full py-16 md:py-24 bg-slate-950 border-b border-slate-800/80 overflow-hidden shadow-2xl">
+            <section className="relative w-full py-16 md:py-24 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800/80 overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-grid-white/[0.01]" />
                 <div className="container relative z-10 px-4 md:px-6">
                     <div className="flex flex-col items-center space-y-6 text-center max-w-4xl mx-auto">
-                        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs font-bold font-mono tracking-widest uppercase animate-pulse">
+                        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-yellow-500 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-500 border border-yellow-500/20 text-xs font-bold font-mono tracking-widest uppercase animate-pulse">
                             <TrainFront className="h-4 w-4" /> ACTIVE DISPATCH GATEWAY SECURED
                         </div>
                         
@@ -354,19 +354,19 @@ export const Landing = () => {
                                     {user?.email?.split('@')[0]}
                                 </span>
                             </h1>
-                            <p className="mx-auto max-w-[700px] text-slate-400 text-sm md:text-lg leading-relaxed font-sans font-semibold">
+                            <p className="mx-auto max-w-[700px] text-slate-500 dark:text-slate-400 text-sm md:text-lg leading-relaxed font-sans font-semibold">
                                 License active. Manage your spotter badges, customize your cabin credentials, and explore the advanced geographical tracking sandbox below.
                             </p>
                         </div>
                         
                         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-6">
                             <Link to="/trains" className="w-full sm:w-auto">
-                                <Button size="lg" className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold px-8 h-12 rounded-xl shadow-xl shadow-yellow-500/20 transition-all uppercase tracking-wider">
+                                <Button size="lg" className="w-full sm:w-auto bg-yellow-500 dark:bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold px-8 h-12 rounded-xl shadow-xl shadow-yellow-500/20 transition-all uppercase tracking-wider">
                                     Track Status Inquiry <ArrowRight className="h-4 w-4 ml-2" />
                                 </Button>
                             </Link>
                             <Link to="/live-map" className="w-full sm:w-auto">
-                                <Button variant="outline" size="lg" className="w-full sm:w-auto h-12 px-8 border-slate-800 text-slate-300 hover:text-slate-100 hover:bg-slate-900 font-bold rounded-xl tracking-wider uppercase">
+                                <Button variant="outline" size="lg" className="w-full sm:w-auto h-12 px-8 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:bg-slate-900 font-bold rounded-xl tracking-wider uppercase">
                                     Launch Satellite Map
                                 </Button>
                             </Link>
@@ -380,132 +380,33 @@ export const Landing = () => {
                 {/* ================= SECTION 1: INTERACTIVE PROFILE HUB ================= */}
                 <div className="grid gap-8 lg:grid-cols-12 items-start">
                     
-                    {/* Left: Customizer & Stats (col-span 7) */}
-                    <div className="lg:col-span-7 space-y-8">
-                        <Card className="bg-slate-950/70 border-slate-800 shadow-xl backdrop-blur-md overflow-hidden relative">
-                            {/* Visual glowing bar reflecting selected frame theme */}
-                            <div className={`h-1.5 w-full bg-current transition-all duration-500 ${
-                                selectedBorder === 'gold' ? 'text-yellow-500' :
-                                selectedBorder === 'emerald' ? 'text-emerald-500' : 'text-indigo-500'
-                            }`} />
-                            
-                            <CardHeader className="border-b border-slate-900 pb-5">
-                                <CardTitle className="text-base font-bold font-mono uppercase tracking-widest text-slate-400 flex items-center gap-2">
-                                    <User className="h-4 w-4 text-yellow-500" /> Spotter Customization Deck
-                                </CardTitle>
-                            </CardHeader>
-                            
-                            <CardContent className="p-6 space-y-6">
-                                <div className="flex flex-col md:flex-row items-center gap-6">
-                                    
-                                    {/* Interactive Live-rendered Avatar Frame */}
-                                    <div className="relative">
-                                        <div className={`h-24 w-24 rounded-full border-4 flex items-center justify-center text-4xl bg-slate-900 shadow-2xl transition-all duration-500 ${avatarGlows[selectedBorder]}`}>
-                                            {avatarIcons[selectedBadge]}
-                                        </div>
-                                        <span className={`absolute -bottom-1 -right-1 h-7 w-7 rounded-full bg-slate-950 border flex items-center justify-center text-xs animate-bounce font-bold border-slate-800 ${
-                                            selectedBorder === 'gold' ? 'text-yellow-400' :
-                                            selectedBorder === 'emerald' ? 'text-emerald-400' : 'text-indigo-400'
-                                        }`}>
-                                            {level}
-                                        </span>
-                                    </div>
-
-                                    {/* Customizer Selectors */}
-                                    <div className="flex-1 space-y-4 font-mono w-full">
-                                        {/* 1. Theme Borders */}
-                                        <div className="space-y-1.5">
-                                            <div className="text-[10px] font-bold text-slate-500 uppercase">Frame Glow Border</div>
-                                            <div className="grid grid-cols-3 gap-2">
-                                                {[
-                                                    { id: 'gold', name: '🥇 Neon Gold', class: 'border-yellow-500/30 text-yellow-500 bg-yellow-500/5' },
-                                                    { id: 'emerald', name: '🌿 Cyber Emerald', class: 'border-emerald-500/30 text-emerald-500 bg-emerald-500/5' },
-                                                    { id: 'indigo', name: '🔮 Electric Indigo', class: 'border-indigo-500/30 text-indigo-500 bg-indigo-500/5' }
-                                                ].map(frame => (
-                                                    <button
-                                                        key={frame.id}
-                                                        onClick={() => setSelectedBorder(frame.id as any)}
-                                                        className={`py-2 text-[10px] border font-bold rounded-lg transition-all ${
-                                                            selectedBorder === frame.id 
-                                                                ? 'border-slate-100 bg-slate-800 text-slate-100 shadow-md font-black scale-105' 
-                                                                : 'hover:border-slate-700 text-slate-400 hover:text-slate-200'
-                                                        }`}
-                                                    >
-                                                        {frame.name}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        {/* 2. Badge Profiles */}
-                                        <div className="space-y-1.5">
-                                            <div className="text-[10px] font-bold text-slate-500 uppercase">Certified Badge Role</div>
-                                            <div className="grid grid-cols-3 gap-2">
-                                                {[
-                                                    { id: 'conductor', name: 'Conductor' },
-                                                    { id: 'inspector', name: 'Cabin Inspector' },
-                                                    { id: 'dispatcher', name: 'Dispatcher' }
-                                                ].map(badge => (
-                                                    <button
-                                                        key={badge.id}
-                                                        onClick={() => setSelectedBadge(badge.id as any)}
-                                                        className={`py-2 text-[10px] border font-bold rounded-lg transition-all ${
-                                                            selectedBadge === badge.id 
-                                                                ? 'border-slate-100 bg-slate-800 text-slate-100 shadow-md font-black scale-105' 
-                                                                : 'hover:border-slate-700 text-slate-400 hover:text-slate-200'
-                                                        }`}
-                                                    >
-                                                        {badge.name}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* XP Level Bar Panel */}
-                                <div className="space-y-2 pt-4 border-t border-slate-900 font-mono">
-                                    <div className="flex justify-between items-center text-xs">
-                                        <span className="text-slate-400 flex items-center gap-1.5"><Award className="h-4 w-4 text-yellow-500" /> Dispatcher Level {level} XP</span>
-                                        <span className="font-bold text-yellow-500">{xp} / 500 XP</span>
-                                    </div>
-                                    <div className="h-3 w-full bg-slate-900 rounded-full overflow-hidden border border-slate-800 p-0.5 relative">
-                                        <div 
-                                            className="h-full bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full transition-all duration-700 ease-out"
-                                            style={{ width: `${xpPercent}%` }}
-                                        />
-                                    </div>
-                                    <div className="text-[10px] text-slate-500 text-right">Complete Daily Quests below to earn XP & level up!</div>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        {/* Interactive Stats Grid */}
+                    {/* Left: Stats & Level (col-span 7) */}
+                    <div className="lg:col-span-7 space-y-8 flex flex-col justify-center">
                         <div className="grid gap-4 grid-cols-2 md:grid-cols-4 font-mono">
-                            <div className="p-4 bg-slate-950/60 border border-slate-800 rounded-2xl flex flex-col justify-between hover:border-yellow-500/20 transition-all duration-300">
-                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Spotted Trains</span>
-                                <div className="text-xl font-black text-yellow-400 mt-2">{spotCount} Routes</div>
-                                <span className="text-[8px] text-slate-600 mt-1">Schedules logged</span>
+                            <div className="p-4 bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col justify-between hover:border-yellow-500/20 transition-all duration-300">
+                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500">Spotted Trains</span>
+                                <div className="text-xl font-black text-yellow-600 dark:text-yellow-400 mt-2">{spotCount} Routes</div>
+                                <span className="text-[8px] text-slate-600 dark:text-slate-600 mt-1">Schedules logged</span>
                             </div>
                             
-                            <div className="p-4 bg-slate-950/60 border border-slate-800 rounded-2xl flex flex-col justify-between hover:border-yellow-500/20 transition-all duration-300">
-                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">GPS Mileage</span>
-                                <div className="text-xl font-black text-emerald-400 mt-2">{mileage} km</div>
-                                <span className="text-[8px] text-slate-600 mt-1">Spotted mileage</span>
+                            <div className="p-4 bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col justify-between hover:border-yellow-500/20 transition-all duration-300">
+                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500">GPS Mileage</span>
+                                <div className="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-2">{mileage} km</div>
+                                <span className="text-[8px] text-slate-600 dark:text-slate-600 mt-1">Spotted mileage</span>
                             </div>
 
-                            <div className="p-4 bg-slate-950/60 border border-slate-800 rounded-2xl flex flex-col justify-between hover:border-yellow-500/20 transition-all duration-300">
-                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Carbon Savings</span>
-                                <div className="text-xl font-black text-emerald-400 mt-2">{co2Saved} kg</div>
-                                <span className="text-[8px] text-slate-600 mt-1">Saved vs Flying</span>
+                            <div className="p-4 bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col justify-between hover:border-yellow-500/20 transition-all duration-300">
+                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500">Carbon Savings</span>
+                                <div className="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-2">{co2Saved} kg</div>
+                                <span className="text-[8px] text-slate-600 dark:text-slate-600 mt-1">Saved vs Flying</span>
                             </div>
 
-                            <div className="p-4 bg-slate-950/60 border border-slate-800 rounded-2xl flex flex-col justify-between hover:border-indigo-500/20 transition-all duration-300">
-                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">Current Rank</span>
+                            <div className="p-4 bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col justify-between hover:border-indigo-500/20 transition-all duration-300">
+                                <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500">Current Rank</span>
                                 <div className="text-[10px] font-black text-indigo-400 mt-2.5 truncate uppercase">
                                     {badgeLabels[selectedBadge]}
                                 </div>
-                                <span className="text-[8px] text-slate-600 mt-1">Rank active</span>
+                                <span className="text-[8px] text-slate-600 dark:text-slate-600 mt-1">Rank active</span>
                             </div>
                         </div>
                     </div>
@@ -529,29 +430,33 @@ export const Landing = () => {
                                     
                                     <div className="flex justify-between items-start font-mono relative z-10">
                                         <div className="space-y-0.5">
-                                            <div className="text-[9px] font-bold tracking-widest text-slate-500 uppercase">MINISTRY OF RAILWAYS</div>
-                                            <h3 className="text-xs font-black text-slate-100 uppercase tracking-widest">NATIONAL INQUIRY NODE</h3>
+                                            <div className="text-[9px] font-bold tracking-widest text-slate-500 dark:text-slate-500 uppercase">MINISTRY OF RAILWAYS</div>
+                                            <h3 className="text-xs font-black text-slate-900 dark:text-slate-100 uppercase tracking-widest">NATIONAL INQUIRY NODE</h3>
                                         </div>
                                         <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping"></span>
                                     </div>
 
                                     {/* Card credentials layout */}
                                     <div className="flex gap-4 items-center relative z-10 py-3.5">
-                                        <div className="h-16 w-16 bg-slate-900/80 border border-slate-800 rounded-xl flex items-center justify-center text-3xl shadow-inner">
-                                            {avatarIcons[selectedBadge]}
+                                        <div className="h-16 w-16 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-center text-3xl shadow-inner overflow-hidden">
+                                            {user?.profilePhotoUrl ? (
+                                                <img src={user.profilePhotoUrl} alt="Avatar" className="h-full w-full object-cover" />
+                                            ) : (
+                                                avatarIcons[selectedBadge]
+                                            )}
                                         </div>
                                         <div className="space-y-1 font-mono text-[10px]">
                                             <div className="flex gap-1.5">
-                                                <span className="text-slate-500">EMAIL:</span>
-                                                <span className="font-bold text-slate-200 uppercase truncate max-w-[130px]">{user?.email}</span>
+                                                <span className="text-slate-500 dark:text-slate-500">EMAIL:</span>
+                                                <span className="font-bold text-slate-800 dark:text-slate-200 uppercase truncate max-w-[130px]">{user?.email}</span>
                                             </div>
                                             <div className="flex gap-1.5">
-                                                <span className="text-slate-500">CLASS:</span>
-                                                <span className="font-bold text-yellow-400 uppercase">{badgeLabels[selectedBadge]}</span>
+                                                <span className="text-slate-500 dark:text-slate-500">CLASS:</span>
+                                                <span className="font-bold text-yellow-600 dark:text-yellow-400 uppercase">{badgeLabels[selectedBadge]}</span>
                                             </div>
                                             <div className="flex gap-1.5">
-                                                <span className="text-slate-500">ID CODE:</span>
-                                                <span className="font-bold text-slate-400">SL-{user?.id.slice(-6).toUpperCase()}</span>
+                                                <span className="text-slate-500 dark:text-slate-500">ID CODE:</span>
+                                                <span className="font-bold text-slate-500 dark:text-slate-400">SL-{user?.id.slice(-6).toUpperCase()}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -559,8 +464,8 @@ export const Landing = () => {
                                     {/* Barcode & Qr Code back section */}
                                     <div className="flex justify-between items-end border-t border-slate-900 pt-3 relative z-10 font-mono">
                                         <div className="space-y-1">
-                                            <div className="text-[8px] text-slate-500">STATUS BEACON:</div>
-                                            <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1.5">
+                                            <div className="text-[8px] text-slate-500 dark:text-slate-500">STATUS BEACON:</div>
+                                            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                                                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> CERTIFIED ACTIVE
                                             </span>
                                         </div>
@@ -569,7 +474,7 @@ export const Landing = () => {
                                             <div className="flex items-center gap-0.5 bg-slate-100 p-1.5 rounded">
                                                 <QrCode className="h-6 w-6 text-slate-950" />
                                             </div>
-                                            <span className="text-[7px] text-slate-600 font-mono">SECURE KEY-PASS</span>
+                                            <span className="text-[7px] text-slate-600 dark:text-slate-600 font-mono">SECURE KEY-PASS</span>
                                         </div>
                                     </div>
                                 </div>
@@ -578,30 +483,30 @@ export const Landing = () => {
                                 <div className={`absolute inset-0 bg-gradient-to-br from-slate-950 to-slate-900 border-2 rounded-3xl p-6 flex flex-col justify-between backface-hidden rotate-y-180 shadow-2xl overflow-hidden ${borderColors[selectedBorder]}`}>
                                     <div className="absolute inset-0 bg-grid-white/[0.01] pointer-events-none" />
                                     
-                                    <div className="font-mono space-y-3.5 text-[10px] text-slate-400 py-2.5">
-                                        <div className="border-b border-slate-900 pb-2 text-slate-200 font-bold uppercase tracking-wider">LICENSE LICENSEE TERMS:</div>
-                                        <p className="leading-relaxed text-[9px] text-slate-500 font-sans">
+                                    <div className="font-mono space-y-3.5 text-[10px] text-slate-500 dark:text-slate-400 py-2.5">
+                                        <div className="border-b border-slate-900 pb-2 text-slate-800 dark:text-slate-200 font-bold uppercase tracking-wider">LICENSE LICENSEE TERMS:</div>
+                                        <p className="leading-relaxed text-[9px] text-slate-500 dark:text-slate-500 font-sans">
                                             This token validates authorized cellular-GPS spotter clearance for local platform schedules. Do not share terminal tokens.
                                         </p>
                                         <div className="space-y-1 pt-1.5">
                                             <div className="flex justify-between">
                                                 <span>SECURE TOKEN:</span>
-                                                <span className="font-bold text-slate-300 font-mono">0x{user?.id.slice(0, 8).toUpperCase()}</span>
+                                                <span className="font-bold text-slate-600 dark:text-slate-300 font-mono">0x{user?.id.slice(0, 8).toUpperCase()}</span>
                                             </div>
                                             <div className="flex justify-between">
                                                 <span>SESSION CLOCK:</span>
-                                                <span className="font-bold text-yellow-500 font-mono">{unixTime} s</span>
+                                                <span className="font-bold text-yellow-600 dark:text-yellow-500 font-mono">{unixTime} s</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="flex flex-col items-center justify-center border-t border-slate-900 pt-3 gap-1">
-                                        <div className="h-6 w-full flex gap-0.5 items-end justify-center bg-slate-950 border border-slate-900 rounded p-1">
+                                        <div className="h-6 w-full flex gap-0.5 items-end justify-center bg-white dark:bg-slate-950 border border-slate-900 rounded p-1">
                                             {[2, 4, 1, 3, 5, 2, 4, 1, 5, 3, 2, 4, 5, 1, 2, 3].map((h, i) => (
                                                 <div key={i} className="bg-slate-500 w-1 rounded-sm" style={{ height: `${h * 20}%` }} />
                                             ))}
                                         </div>
-                                        <span className="text-[8px] text-slate-600 font-mono">CLICK TO FLIP LICENSE DECK</span>
+                                        <span className="text-[8px] text-slate-600 dark:text-slate-600 font-mono">CLICK TO FLIP LICENSE DECK</span>
                                     </div>
                                 </div>
 
@@ -610,7 +515,7 @@ export const Landing = () => {
                         
                         <Button 
                             onClick={() => setIsLicenseFlipped(!isLicenseFlipped)}
-                            className="mt-6 bg-slate-950 border border-slate-800 text-slate-300 hover:text-slate-100 hover:bg-slate-900 font-mono text-xs"
+                            className="mt-6 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:bg-slate-900 font-mono text-xs"
                         >
                             FLIP CREDENTIAL CARD
                         </Button>
@@ -619,12 +524,12 @@ export const Landing = () => {
                 </div>
 
                 {/* ================= Daily Quests Checklist ================= */}
-                <Card className="bg-slate-950/40 border-slate-800 shadow-lg">
+                <Card className="bg-white dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 shadow-lg">
                     <CardHeader className="border-b border-slate-900/60 pb-3 flex flex-row items-center justify-between">
-                        <CardTitle className="text-sm font-bold font-mono uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                        <CardTitle className="text-sm font-bold font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
                             <Flame className="h-4 w-4 text-orange-500 animate-pulse" /> Dispatcher Daily Missions
                         </CardTitle>
-                        <span className="text-[10px] font-bold font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                        <span className="text-[10px] font-bold font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                             XP MULTIPLIER 1.5x ACTIVE
                         </span>
                     </CardHeader>
@@ -637,28 +542,28 @@ export const Landing = () => {
                                     onClick={() => handleQuestToggle(quest.id, quest.points)}
                                     className={`p-3.5 border rounded-2xl flex flex-col justify-between gap-3 cursor-pointer transition-all duration-300 ${
                                         isCompleted 
-                                            ? 'bg-emerald-500/5 border-emerald-500/30 text-slate-400 glow-green' 
-                                            : 'bg-slate-950/60 border-slate-900 text-slate-200 hover:border-slate-800'
+                                            ? 'bg-emerald-500/5 border-emerald-500/30 text-slate-500 dark:text-slate-400 glow-green' 
+                                            : 'bg-white dark:bg-slate-950/60 border-slate-900 text-slate-800 dark:text-slate-200 hover:border-slate-200 dark:border-slate-800'
                                     }`}
                                 >
                                     <div className="space-y-1.5">
                                         <div className="flex justify-between items-start gap-2">
-                                            <span className={`text-[10px] leading-snug font-bold ${isCompleted ? 'line-through text-slate-500' : 'text-slate-200'}`}>
+                                            <span className={`text-[10px] leading-snug font-bold ${isCompleted ? 'line-through text-slate-500 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200'}`}>
                                                 {quest.text}
                                             </span>
                                             <div className={`h-4.5 w-4.5 rounded flex items-center justify-center border transition-all shrink-0 ${
-                                                isCompleted ? 'border-emerald-500 bg-emerald-500 text-slate-950' : 'border-slate-700'
+                                                isCompleted ? 'border-emerald-500 bg-emerald-500 text-slate-950' : 'border-slate-300 dark:border-slate-700'
                                             }`}>
                                                 {isCompleted && <Check className="h-3 w-3 stroke-[3]" />}
                                             </div>
                                         </div>
-                                        <p className="text-[8px] text-slate-500 leading-normal font-sans">
+                                        <p className="text-[8px] text-slate-500 dark:text-slate-500 leading-normal font-sans">
                                             {quest.desc}
                                         </p>
                                     </div>
                                     <div className="flex justify-between items-center pt-2 border-t border-slate-900/60">
-                                        <span className="text-[8px] text-slate-550">REWARD:</span>
-                                        <span className={`text-[10px] font-bold ${isCompleted ? 'text-slate-600' : 'text-yellow-500'}`}>+{quest.points} XP</span>
+                                        <span className="text-[8px] text-slate-600 dark:text-slate-600">REWARD:</span>
+                                        <span className={`text-[10px] font-bold ${isCompleted ? 'text-slate-600 dark:text-slate-600' : 'text-yellow-600 dark:text-yellow-500'}`}>+{quest.points} XP</span>
                                     </div>
                                 </div>
                             );
@@ -671,22 +576,22 @@ export const Landing = () => {
                     
                     {/* Sandbox Simulator widget (col-span 7) */}
                     <div className="lg:col-span-7 space-y-4">
-                        <Card className="bg-slate-950/40 border-slate-800 shadow-xl overflow-hidden font-mono">
-                            <CardHeader className="bg-slate-950 border-b border-slate-900 pb-4">
-                                <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                        <Card className="bg-white dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden font-mono">
+                            <CardHeader className="bg-white dark:bg-slate-950 border-b border-slate-900 pb-4">
+                                <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
                                     <Compass className="h-4 w-4 text-emerald-500" /> Interactive Route Sandbox Manual
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="p-6 space-y-6">
-                                <p className="text-xs text-slate-400 leading-relaxed font-sans font-medium">
+                                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-sans font-medium">
                                     Select an origin station and destination station from the controller panel below, then trigger the visual seeder track generator to trace simulated intermediate hubs, fares, and progressive pathways on a visual line.
                                 </p>
 
                                 <div className="grid gap-4 md:grid-cols-2">
                                     <div className="space-y-1.5">
-                                        <label className="text-[10px] font-bold text-slate-500 uppercase">Select Origin Hub</label>
+                                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase">Select Origin Hub</label>
                                         <select
-                                            className="w-full h-10 rounded-lg border border-slate-800 bg-slate-950 px-3.5 text-xs text-yellow-450 focus:outline-none"
+                                            className="w-full h-10 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-3.5 text-xs text-yellow-600 dark:text-yellow-400 focus:outline-none"
                                             value={sandboxOrigin}
                                             onChange={(e) => setSandboxOrigin(e.target.value)}
                                         >
@@ -696,9 +601,9 @@ export const Landing = () => {
                                         </select>
                                     </div>
                                     <div className="space-y-1.5">
-                                        <label className="text-[10px] font-bold text-slate-500 uppercase">Select Destination Hub</label>
+                                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase">Select Destination Hub</label>
                                         <select
-                                            className="w-full h-10 rounded-lg border border-slate-800 bg-slate-950 px-3.5 text-xs text-yellow-450 focus:outline-none"
+                                            className="w-full h-10 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-3.5 text-xs text-yellow-600 dark:text-yellow-400 focus:outline-none"
                                             value={sandboxDest}
                                             onChange={(e) => setSandboxDest(e.target.value)}
                                         >
@@ -722,9 +627,9 @@ export const Landing = () => {
                                     <div className="space-y-6 pt-4 border-t border-slate-900">
                                         
                                         {/* Linear railway line graphic */}
-                                        <div className="relative py-8 px-4 bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden flex items-center justify-between">
+                                        <div className="relative py-8 px-4 bg-white dark:bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden flex items-center justify-between">
                                             {/* Line background track */}
-                                            <div className="absolute left-6 right-6 top-[50%] h-[3px] bg-slate-800 z-0">
+                                            <div className="absolute left-6 right-6 top-[50%] h-[3px] bg-slate-100 dark:bg-slate-800 z-0">
                                                 <div 
                                                     className="h-full bg-gradient-to-r from-emerald-500 to-yellow-500 transition-all duration-300"
                                                     style={{ width: `${sandboxProgress}%` }}
@@ -737,11 +642,11 @@ export const Landing = () => {
                                                 return (
                                                     <div key={idx} className="relative z-10 flex flex-col items-center">
                                                         <div className={`h-5 w-5 rounded-full border-4 flex items-center justify-center transition-colors duration-500 ${
-                                                            isPassed ? 'border-emerald-500 bg-slate-950' : 'border-slate-800 bg-slate-950'
+                                                            isPassed ? 'border-emerald-500 bg-white dark:bg-slate-950' : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950'
                                                         }`}>
                                                             {isPassed && <div className="h-1.5 w-1.5 bg-emerald-500 rounded-full animate-ping" />}
                                                         </div>
-                                                        <span className="text-[9px] font-bold text-slate-400 mt-2 font-mono">{stop.code}</span>
+                                                        <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 mt-2 font-mono">{stop.code}</span>
                                                     </div>
                                                 );
                                             })}
@@ -761,31 +666,31 @@ export const Landing = () => {
                                         <div className="grid gap-4 md:grid-cols-2 font-mono text-xs">
                                             
                                             {/* Timetable stops details */}
-                                            <div className="p-4 rounded-xl border border-slate-900 bg-slate-955/20 space-y-2">
-                                                <div className="text-[10px] font-bold text-slate-500 uppercase pb-1 border-b border-slate-900">Spotted Path stops:</div>
+                                            <div className="p-4 rounded-xl border border-slate-900 bg-white dark:bg-slate-950/20 space-y-2">
+                                                <div className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase pb-1 border-b border-slate-900">Spotted Path stops:</div>
                                                 {sandboxStops.map((s, idx) => (
                                                     <div key={idx} className="flex justify-between items-center text-[10px]">
-                                                        <span className="text-slate-350">{s.name}</span>
-                                                        <span className="font-bold text-emerald-400 bg-emerald-500/5 border border-emerald-500/10 px-1.5 py-0.5 rounded">{s.code}</span>
+                                                        <span className="text-slate-500 dark:text-slate-400">{s.name}</span>
+                                                        <span className="font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 border border-emerald-500/10 px-1.5 py-0.5 rounded">{s.code}</span>
                                                     </div>
                                                 ))}
                                             </div>
 
                                             {/* Dynamic seeder calculated fares */}
                                             {sandboxFares && (
-                                                <div className="p-4 rounded-xl border border-slate-900 bg-slate-955/20 space-y-2">
-                                                    <div className="text-[10px] font-bold text-slate-500 uppercase pb-1 border-b border-slate-900">Estimated Fares:</div>
+                                                <div className="p-4 rounded-xl border border-slate-900 bg-white dark:bg-slate-950/20 space-y-2">
+                                                    <div className="text-[10px] font-bold text-slate-500 dark:text-slate-500 uppercase pb-1 border-b border-slate-900">Estimated Fares:</div>
                                                     <div className="flex justify-between text-[10px]">
-                                                        <span className="text-slate-400">1AC Premium (1A):</span>
-                                                        <span className="font-bold text-yellow-500">₹{sandboxFares.T1}</span>
+                                                        <span className="text-slate-500 dark:text-slate-400">1AC Premium (1A):</span>
+                                                        <span className="font-bold text-yellow-600 dark:text-yellow-500">₹{sandboxFares.T1}</span>
                                                     </div>
                                                     <div className="flex justify-between text-[10px]">
-                                                        <span className="text-slate-400">3AC Comfort (3A):</span>
-                                                        <span className="font-bold text-slate-200">₹{sandboxFares.T3}</span>
+                                                        <span className="text-slate-500 dark:text-slate-400">3AC Comfort (3A):</span>
+                                                        <span className="font-bold text-slate-800 dark:text-slate-200">₹{sandboxFares.T3}</span>
                                                     </div>
                                                     <div className="flex justify-between text-[10px]">
-                                                        <span className="text-slate-400">Sleeper Class (SL):</span>
-                                                        <span className="font-bold text-slate-200">₹{sandboxFares.SL}</span>
+                                                        <span className="text-slate-500 dark:text-slate-400">Sleeper Class (SL):</span>
+                                                        <span className="font-bold text-slate-800 dark:text-slate-200">₹{sandboxFares.SL}</span>
                                                     </div>
                                                 </div>
                                             )}
@@ -799,30 +704,30 @@ export const Landing = () => {
 
                     {/* Interactive Technology sound / announcer Manual (col-span 5) */}
                     <div className="lg:col-span-5 space-y-4">
-                        <Card className="bg-slate-950/40 border-slate-800 shadow-xl font-mono overflow-hidden">
-                            <CardHeader className="bg-slate-950 border-b border-slate-900 pb-4">
-                                <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
-                                    <Cpu className="h-4 w-4 text-yellow-500" /> Interactive Technology Explorer
+                        <Card className="bg-white dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 shadow-xl font-mono overflow-hidden">
+                            <CardHeader className="bg-white dark:bg-slate-950 border-b border-slate-900 pb-4">
+                                <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                                    <Cpu className="h-4 w-4 text-yellow-600 dark:text-yellow-500" /> Interactive Technology Explorer
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="p-5 space-y-5">
-                                <p className="text-[10px] text-slate-400 leading-relaxed font-sans">
+                                <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed font-sans">
                                     Try out our advanced browser hardware APIs in real-time. Test customized vocal announcers or synthesize oscillators.
                                 </p>
 
                                 {/* 1. Speech synthesis simulator */}
-                                <div className="p-4 rounded-2xl border border-slate-900 bg-slate-950/80 space-y-3">
-                                    <div className="text-[10px] font-bold text-yellow-500 flex items-center gap-1">
+                                <div className="p-4 rounded-2xl border border-slate-900 bg-white dark:bg-slate-950/80 space-y-3">
+                                    <div className="text-[10px] font-bold text-yellow-600 dark:text-yellow-500 flex items-center gap-1">
                                         <Volume2 className="h-3.5 w-3.5" /> Vocal Announcement Synthesizer
                                     </div>
                                     <textarea 
                                         value={announcementText}
                                         onChange={(e) => setAnnouncementText(e.target.value)}
-                                        className="w-full h-16 rounded border border-slate-800 bg-slate-900 p-2.5 text-[10px] text-slate-200 focus:outline-none placeholder:text-slate-600"
+                                        className="w-full h-16 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-2.5 text-[10px] text-slate-800 dark:text-slate-200 focus:outline-none placeholder:text-slate-600 dark:text-slate-600"
                                         maxLength={150}
                                     />
                                     <div className="flex justify-between items-center gap-4">
-                                        <div className="flex items-center gap-2 text-[8px] text-slate-500">
+                                        <div className="flex items-center gap-2 text-[8px] text-slate-500 dark:text-slate-500">
                                             <span>Speed:</span>
                                             <input 
                                                 type="range" 
@@ -833,12 +738,12 @@ export const Landing = () => {
                                                 onChange={(e) => setVoiceSpeed(parseFloat(e.target.value))}
                                                 className="w-16 accent-yellow-500"
                                             />
-                                            <span className="font-bold text-slate-400">{voiceSpeed}x</span>
+                                            <span className="font-bold text-slate-500 dark:text-slate-400">{voiceSpeed}x</span>
                                         </div>
                                         <Button 
                                             onClick={triggerSandboxVoice}
                                             size="sm" 
-                                            className="bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold px-3 text-[9px] h-8"
+                                            className="bg-yellow-500 dark:bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold px-3 text-[9px] h-8"
                                         >
                                             ANNOUNCE LIVE
                                         </Button>
@@ -846,29 +751,29 @@ export const Landing = () => {
                                 </div>
 
                                 {/* 2. Web Audio Oscillator chime tester */}
-                                <div className="p-4 rounded-2xl border border-slate-900 bg-slate-950/80 space-y-3">
-                                    <div className="text-[10px] font-bold text-emerald-400 flex items-center gap-1">
+                                <div className="p-4 rounded-2xl border border-slate-900 bg-white dark:bg-slate-950/80 space-y-3">
+                                    <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                                         <Music className="h-3.5 w-3.5" /> Web Audio Chime Soundboard
                                     </div>
-                                    <p className="text-[9px] text-slate-500 leading-normal">
+                                    <p className="text-[9px] text-slate-500 dark:text-slate-500 leading-normal">
                                         Procedurally synthesizes standard railway melodies using pure trigonometric sine waves and oscillator parameters.
                                     </p>
                                     <div className="grid grid-cols-3 gap-1.5">
                                         <button 
                                             onClick={() => playSynthesizedChime('station')}
-                                            className="py-2 px-1 text-[8px] font-bold border border-slate-800 bg-slate-900 hover:border-slate-700 text-slate-200 rounded-lg uppercase"
+                                            className="py-2 px-1 text-[8px] font-bold border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg uppercase"
                                         >
                                             🔊 STATION
                                         </button>
                                         <button 
                                             onClick={() => playSynthesizedChime('warning')}
-                                            className="py-2 px-1 text-[8px] font-bold border border-slate-800 bg-slate-900 hover:border-slate-700 text-slate-200 rounded-lg uppercase"
+                                            className="py-2 px-1 text-[8px] font-bold border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg uppercase"
                                         >
                                             🔊 WARNING
                                         </button>
                                         <button 
                                             onClick={() => playSynthesizedChime('success')}
-                                            className="py-2 px-1 text-[8px] font-bold border border-slate-800 bg-slate-900 hover:border-slate-700 text-slate-200 rounded-lg uppercase"
+                                            className="py-2 px-1 text-[8px] font-bold border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg uppercase"
                                         >
                                             🔊 SUCCESS
                                         </button>
@@ -883,12 +788,12 @@ export const Landing = () => {
             </div>
             
             {/* Redesigned footer */}
-            <footer className="w-full mt-20 py-8 bg-slate-950 border-t border-slate-800/80">
-                <div className="container flex flex-col items-center justify-between gap-4 md:flex-row px-4 md:px-6 font-mono text-xs text-slate-500">
+            <footer className="w-full mt-20 py-8 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80">
+                <div className="container flex flex-col items-center justify-between gap-4 md:flex-row px-4 md:px-6 font-mono text-xs text-slate-500 dark:text-slate-500">
                     <p>© 2026 RAIL TRAIN SPOTTER. CERTIFIED UNDER MINISTRY OF RAILWAYS.</p>
                     <nav className="flex gap-4 sm:gap-6">
-                        <Link className="hover:text-slate-300" to="#">Holographic Guidelines</Link>
-                        <Link className="hover:text-slate-300" to="#">Privacy Node</Link>
+                        <Link className="hover:text-slate-600 dark:text-slate-300" to="#">Holographic Guidelines</Link>
+                        <Link className="hover:text-slate-600 dark:text-slate-300" to="#">Privacy Node</Link>
                     </nav>
                 </div>
             </footer>

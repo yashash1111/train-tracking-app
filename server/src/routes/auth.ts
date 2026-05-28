@@ -7,7 +7,9 @@ import {
     resetPassword,
     guestLogin,
     getProfile,
-    updateProfile
+    updateProfile,
+    getLeaderboard,
+    spotTrain
 } from '../controllers/auth';
 import { authenticateToken } from '../middlewares/auth';
 
@@ -22,5 +24,8 @@ router.post('/reset-password', resetPassword);
 
 router.get('/profile', authenticateToken, getProfile);
 router.put('/profile', authenticateToken, updateProfile);
+
+router.get('/leaderboard', authenticateToken, getLeaderboard);
+router.post('/spot/:trainId', authenticateToken, spotTrain);
 
 export default router;

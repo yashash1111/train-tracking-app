@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import User from '../models/User';
+import SpotEvent from '../models/SpotEvent';
 import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../utils/token';
 import { z } from 'zod';
 
@@ -38,7 +39,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 
         res.status(201).json({
             message: 'User created successfully',
-            user: { id: user.id, email: user.email, name: user.name },
+            user: { id: user.id, email: user.email, name: user.name, profilePhotoUrl: user.profilePhotoUrl },
             accessToken,
             refreshToken,
         });
@@ -68,7 +69,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
         res.json({
             message: 'Login successful',
-            user: { id: user.id, email: user.email, name: user.name },
+            user: { id: user.id, email: user.email, name: user.name, profilePhotoUrl: user.profilePhotoUrl },
             accessToken,
             refreshToken,
         });
@@ -190,7 +191,7 @@ export const guestLogin = async (req: Request, res: Response): Promise<void> => 
 
         res.json({
             message: 'Guest login successful',
-            user: { id: user.id, email: user.email, name: user.name },
+            user: { id: user.id, email: user.email, name: user.name, profilePhotoUrl: user.profilePhotoUrl },
             accessToken,
             refreshToken,
         });
@@ -229,7 +230,7 @@ export const updateProfile = async (req: any, res: Response): Promise<void> => {
             return;
         }
 
-        const { name, email, newPassword } = req.body;
+        const { name, email, newPassword, profilePhotoUrl, removePhoto, phone, bio } = req.body;
 
         const user = await User.findById(userId);
         if (!user) {
@@ -249,6 +250,12 @@ export const updateProfile = async (req: any, res: Response): Promise<void> => {
         if (name) {
             user.name = name;
         }
+        if (phone !== undefined) {
+            user.phone = phone;
+        }
+        if (bio !== undefined) {
+            user.bio = bio;
+        }
 
         if (newPassword) {
             if (newPassword.length < 6) {
@@ -258,14 +265,62 @@ export const updateProfile = async (req: any, res: Response): Promise<void> => {
             user.passwordHash = await bcrypt.hash(newPassword, 10);
         }
 
+        if (profilePhotoUrl) {
+            user.profilePhotoUrl = profilePhotoUrl;
+        }
+
+        if (removePhoto) {
+            user.profilePhotoUrl = undefined;
+        }
+
         await user.save();
 
         res.json({
             message: 'Profile updated successfully',
-            user: { id: user.id, email: user.email, name: user.name }
+            user: { id: user.id, email: user.email, name: user.name, profilePhotoUrl: user.profilePhotoUrl }
         });
     } catch (error: any) {
         res.status(500).json({ message: error.message || 'Error updating profile' });
     }
 };
 
+export const getLeaderboard = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const users = await User.find().sort({ points: -1 }).limit(20).select('name profilePhotoUrl points role');
+        res.json(users);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message || 'Error fetching leaderboard' });
+    }
+};
+
+export const spotTrain = async (req: any, res: Response): Promise<void> => {
+    try {
+        const userId = req.user?.userId;
+        const { trainId } = req.params;
+        
+        const user = await User.findById(userId);
+        if (!user) {
+            res.status(404).json({ message: 'User not found' });
+            return;
+        }
+        
+        if (!user.spottedTrains) user.spottedTrains = [];
+        
+        if (!user.spottedTrains.includes(trainId)) {
+            user.spottedTrains.push(trainId);
+            user.points = (user.points || 0) + 10;
+            await user.save();
+
+            // Log the global spot event
+            const spotEvent = new SpotEvent({
+                train: trainId,
+                user: user._id
+            });
+            await spotEvent.save();
+        }
+        
+        res.json({ message: 'Train spotted successfully', points: user.points, spottedTrains: user.spottedTrains });
+    } catch (error: any) {
+        res.status(500).json({ message: error.message || 'Error spotting train' });
+    }
+};

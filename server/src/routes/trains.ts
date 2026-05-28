@@ -3,6 +3,7 @@ import {
     getTrains, 
     getTrainById, 
     getStations, 
+    getRecentSpots,
     getChatMessages, 
     postChatMessage 
 } from '../controllers/trains';
@@ -13,6 +14,7 @@ const router = Router();
 router.get('/trains', getTrains);
 router.get('/trains/:id', getTrainById);
 router.get('/stations', getStations);
+router.get('/recent-spots', getRecentSpots);
 
 // Chat endpoints for train-specific passenger social feeds
 router.get('/trains/:id/chats', getChatMessages);

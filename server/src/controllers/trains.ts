@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Train from '../models/Train';
 import Station from '../models/Station';
+import SpotEvent from '../models/SpotEvent';
 import ChatMessage from '../models/ChatMessage';
 
 // Get all trains, optionally filtered by source / destination station IDs
@@ -81,6 +82,21 @@ export const getStations = async (req: Request, res: Response): Promise<void> =>
         res.json(stations);
     } catch (error: any) {
         res.status(500).json({ message: error.message || 'Error fetching stations' });
+    }
+};
+
+// Get recently spotted trains globally
+export const getRecentSpots = async (req: Request, res: Response) => {
+    try {
+        const spots = await SpotEvent.find()
+            .sort({ createdAt: -1 })
+            .limit(10)
+            .populate('train', 'number name type')
+            .populate('user', 'name profilePhotoUrl badge');
+        
+        res.json(spots);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message || 'Error fetching recent spots' });
     }
 };
 
