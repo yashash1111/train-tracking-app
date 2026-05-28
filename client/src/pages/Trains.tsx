@@ -761,7 +761,7 @@ export const Trains = () => {
                                                     </thead>
                                                     <tbody className="divide-y divide-slate-900/60 text-slate-600 dark:text-slate-300">
                                                         {paginatedStationTrains.map((train) => {
-                                                            const targetStn = stations.find(s => s.id === selectedBoardStation)!;
+                                                            const targetStn = stations.find(s => s._id === selectedBoardStation)!;
                                                             const stopDetails = train.routes?.[0]?.stops.find(stop => stop.code === targetStn.code)!;
                                                             const delay = stopDetails?.delay || 0;
 
