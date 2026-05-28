@@ -23,7 +23,7 @@ export const Navbar = () => {
 
     return (
         <nav className="border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950/80 backdrop-blur-xl sticky top-0 z-50 shadow-md">
-            <div className="container flex h-16 items-center justify-between px-4">
+            <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <Link to="/" className="flex items-center gap-2 font-bold text-xl font-mono text-yellow-600 dark:text-yellow-400 group">
                     <div className="h-9 w-9 rounded-lg bg-yellow-500 dark:bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-600 dark:text-yellow-500 group-hover:bg-yellow-500 dark:bg-yellow-500 group-hover:text-slate-950 transition-all duration-300">
                         <TrainFront className="h-5 w-5" />

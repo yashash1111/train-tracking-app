@@ -326,7 +326,7 @@ export const Trains = () => {
             {/* Indian Railways Display Header */}
             <div className="relative bg-white dark:bg-slate-950 border-b border-yellow-500/20 py-12 overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-grid-white/[0.02]" />
-                <div className="container relative z-10 text-center space-y-3">
+                <div className="container mx-auto relative z-10 text-center space-y-3">
                     <div className="mx-auto h-12 w-12 rounded-full bg-yellow-500 dark:bg-yellow-500/10 flex items-center justify-center text-yellow-600 dark:text-yellow-500 border border-yellow-500/30 animate-pulse">
                         <TrainFront className="h-6 w-6" />
                     </div>
@@ -339,7 +339,7 @@ export const Trains = () => {
                 </div>
             </div>
 
-            <div className="container mt-8 space-y-6">
+            <div className="container mx-auto mt-8 space-y-6">
                 {/* Custom Tab Switcher */}
                 <div className="flex border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-1.5 rounded-2xl max-w-lg mx-auto shadow-lg">
                     <button

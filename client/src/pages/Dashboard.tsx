@@ -175,7 +175,7 @@ export const Dashboard = () => {
     const strokeDashoffset = circumference - (co2Percentage / 100) * circumference;
 
     return (
-        <div className="container py-8 space-y-8 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen font-sans">
+        <div className="container mx-auto py-8 space-y-8 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen font-sans">
             
             {/* Header Railway Board */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-xl relative overflow-hidden">

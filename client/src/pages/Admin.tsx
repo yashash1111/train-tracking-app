@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
 
 export const AdminPanel = () => {
     return (
-        <div className="container py-8">
+        <div className="container mx-auto py-8">
             <h1 className="text-3xl font-bold mb-8">Admin Panel</h1>
             <div className="grid gap-4 md:grid-cols-2">
                 <Card>

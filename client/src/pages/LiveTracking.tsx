@@ -90,7 +90,7 @@ interface FoodOrder {
     status: 'preparing' | 'transit' | 'delivering' | 'delivered';
 }
 
-const SOCKET_URL = 'http://localhost:5001';
+const SOCKET_URL = `http://${window.location.hostname}:5001`;
 
 export const LiveTracking = () => {
     const [trains, setTrains] = useState<Train[]>([]);

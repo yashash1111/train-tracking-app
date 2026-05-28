@@ -341,7 +341,7 @@ export const Landing = () => {
             {/* Redesigned Premium Hero Header */}
             <section className="relative w-full py-16 md:py-24 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800/80 overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-grid-white/[0.01]" />
-                <div className="container relative z-10 px-4 md:px-6">
+                <div className="container mx-auto relative z-10 px-4 md:px-6">
                     <div className="flex flex-col items-center space-y-6 text-center max-w-4xl mx-auto">
                         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-yellow-500 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-500 border border-yellow-500/20 text-xs font-bold font-mono tracking-widest uppercase animate-pulse">
                             <TrainFront className="h-4 w-4" /> ACTIVE DISPATCH GATEWAY SECURED
@@ -375,7 +375,7 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <div className="container mt-12 space-y-12">
+            <div className="container mx-auto mt-12 space-y-12">
                 
                 {/* ================= SECTION 1: INTERACTIVE PROFILE HUB ================= */}
                 <div className="grid gap-8 lg:grid-cols-12 items-start">
@@ -789,7 +789,7 @@ export const Landing = () => {
             
             {/* Redesigned footer */}
             <footer className="w-full mt-20 py-8 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80">
-                <div className="container flex flex-col items-center justify-between gap-4 md:flex-row px-4 md:px-6 font-mono text-xs text-slate-500 dark:text-slate-500">
+                <div className="container mx-auto flex flex-col items-center justify-between gap-4 md:flex-row px-4 md:px-6 font-mono text-xs text-slate-500 dark:text-slate-500">
                     <p>© 2026 RAIL TRAIN SPOTTER. CERTIFIED UNDER MINISTRY OF RAILWAYS.</p>
                     <nav className="flex gap-4 sm:gap-6">
                         <Link className="hover:text-slate-600 dark:text-slate-300" to="#">Holographic Guidelines</Link>

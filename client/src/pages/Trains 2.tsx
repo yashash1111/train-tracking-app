@@ -85,7 +85,7 @@ export const Trains = () => {
             {/* Hero Section */}
             <div className="relative bg-primary/5 py-16 md:py-24 overflow-hidden">
                 <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]" />
-                <div className="container relative z-10">
+                <div className="container mx-auto relative z-10">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                         <div className="space-y-4 max-w-2xl">
                             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
@@ -106,7 +106,7 @@ export const Trains = () => {
                 </div>
             </div>
 
-            <div className="container -mt-8 relative z-20 space-y-12 pb-24">
+            <div className="container mx-auto -mt-8 relative z-20 space-y-12 pb-24">
                 {/* Glassmorphism Search Filter */}
                 <div className="rounded-xl border bg-background/60 backdrop-blur-xl shadow-xl p-6 md:p-8">
                     <div className="flex flex-col md:flex-row gap-6 items-end">
