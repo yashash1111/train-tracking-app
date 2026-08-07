@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { createServer } from 'http';
 import mongoose from 'mongoose';
+import path from 'path';
 import { initSocket } from './socket';
 
 // Routes
@@ -31,9 +32,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/timelogs', timeLogRoutes);
 app.use('/api', trainsRouter);
 
-// Basic Route
-app.get('/', (req, res) => {
-    res.send('Rail Network API is running');
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, '../../client/dist')));
+
+// Catch-all route for SPA routing
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
 });
 
 // Database and Server Start
